@@ -1,5 +1,3 @@
-// import logo from './logo.svg';
-import { React } from 'react';
 import { TodoCounter } from './TodoCounter';
 import { TodoSearch } from './TodoSearch';
 import { TodoList } from './TodoList';
@@ -11,7 +9,7 @@ const defaultTodos =  [
   { text: 'Start react course', completed: true},
   { text: 'Create a react proyect', completed: false},
   { text: 'Make housework', completed: false},
-  { text: 'Make housework', completed: false}
+  { text: 'Be focus', completed: false}
 ]
 
 function App() {
