@@ -1,9 +1,9 @@
-function TodoItem() {
+function TodoItem(props) {
   return (
     <li>
-      <span>V</span>
-      <p>Item #1</p>
-      <button>X</button>
+      <span>👌</span>
+      <p>{props.text}</p>
+      <button>✖️</button>
     </li>
   )
 }
