@@ -5,16 +5,29 @@ import { TodoItem } from './TodoItem';
 import { CreateTodoButton } from './CreateTodoButton';
 import React from 'react';
 
-const defaultTodos =  [
-  { text: 'Learn React', completed: false},
-  { text: 'Start react course', completed: true},
-  { text: 'Create a react proyect', completed: false},
-  { text: 'Make housework', completed: false},
-  { text: 'Be focus', completed: false}
-]
+// const defaultTodos =  [
+//   { text: 'Learn React', completed: false},
+//   { text: 'Start react course', completed: true},
+//   { text: 'Create a react proyect', completed: false},
+//   { text: 'Make housework', completed: false},
+//   { text: 'Be focus', completed: false}
+// ]
+
+// localStorage.setItem('TODOS_V1', JSON.stringigy(defaultTodos)) 
+// localStorage.removeItem('TODOS_V1') 
 
 function App() {
-  const [todos, setTodos] = React.useState(defaultTodos)
+  const localStorageTodos = localStorage.getItem('TODOS_V1')
+
+  let parsedTodos
+  if(!localStorageTodos){
+    localStorage.setItem('TODOS_V1', JSON.stringify([]))
+    parsedTodos = []
+  } else {
+    parsedTodos = JSON.parse(localStorageTodos)
+  }
+
+  const [todos, setTodos] = React.useState(parsedTodos)
   const [searchValue, setSearchValue] = React.useState('')
 
   const completedTodos = todos.filter(todo => !!todo.completed).length;
@@ -27,19 +40,25 @@ function App() {
     }
   )
   
+  const saveTodos = (newTodos) => {
+    localStorage.setItem('TODOS_V1', JSON.stringify(newTodos))
+
+    setTodos(newTodos)
+  }
+
   const completeTodo = (text) => {
     const newTodos = [...todos]
     const todoIndex = newTodos.findIndex(todo => todo.text === text)
     const currenteState = newTodos[todoIndex].completed
     newTodos[todoIndex].completed = !currenteState
-    setTodos(newTodos)
+    saveTodos(newTodos)
   }
   
   const deleteTodo = (text) => {
     const newTodos = [...todos]
     const todoIndex = newTodos.findIndex(todo => todo.text === text)
     newTodos.splice(todoIndex, 1)
-    setTodos(newTodos)
+    saveTodos(newTodos)
   }
 
   return (
