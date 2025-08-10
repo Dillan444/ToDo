@@ -4,7 +4,17 @@ import { TodoList } from '../TodoList';
 import { TodoItem } from '../TodoItem';
 import { CreateTodoButton } from '../CreateTodoButton';
 
-function AppUI({totalTodos,completedTodos,searchValue,setSearchValue,filteredTodos,deleteTodo,completeTodo}) {
+function AppUI({totalTodos,
+  completedTodos,
+  searchValue,
+  setSearchValue,
+  filteredTodos,
+  deleteTodo,
+  completeTodo,
+  loading,
+  error
+}) {
+
   return (
     <>
 
@@ -18,6 +28,10 @@ function AppUI({totalTodos,completedTodos,searchValue,setSearchValue,filteredTod
       />
       
       <TodoList>
+        {loading && <p>Cargando ...</p>}
+        {error && <p>Error ...</p>}
+        {(!loading && filteredTodos.lenght === 0) && <p>Crea tu primer ToDo </p>}
+
         {filteredTodos.map(todo => (
           <TodoItem 
           key={todo.text} 
