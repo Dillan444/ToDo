@@ -11,7 +11,7 @@ function CreateTodoButton() {
       }
     }
     >+</button>
-  )
+  ) 
 }
 
 export {CreateTodoButton}
