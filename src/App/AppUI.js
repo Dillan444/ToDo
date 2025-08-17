@@ -2,6 +2,9 @@ import { TodoCounter } from '../TodoCounter';
 import { TodoSearch } from '../TodoSearch';
 import { TodoList } from '../TodoList';
 import { TodoItem } from '../TodoItem';
+import { TodosLoading } from '../TodosLoading';
+import { TodosError } from '../TodosError';
+import { EmptyTodos } from '../EmptyTodos';
 import { CreateTodoButton } from '../CreateTodoButton';
 
 function AppUI({totalTodos,
@@ -12,9 +15,10 @@ function AppUI({totalTodos,
   deleteTodo,
   completeTodo,
   loading,
-  error
+  error,
+  emptyTodos
 }) {
-
+console.log( emptyTodos)
   return (
     <>
 
@@ -28,9 +32,14 @@ function AppUI({totalTodos,
       />
       
       <TodoList>
-        {loading && <p>Cargando ...</p>}
-        {error && <p>Error ...</p>}
-        {(!loading && filteredTodos.lenght === 0) && <p>Crea tu primer ToDo </p>}
+        {loading && 
+          <>
+            <TodosLoading />
+            <TodosLoading />
+            <TodosLoading />
+          </>}
+        {error && <TodosError />}
+        {(!loading && emptyTodos) && <EmptyTodos />}
 
         {filteredTodos.map(todo => (
           <TodoItem 

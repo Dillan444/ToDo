@@ -53,6 +53,7 @@ function App() {
     filteredTodos = {filteredTodos}
     deleteTodo = {deleteTodo}
     completeTodo = {completeTodo}
+    emptyTodos = {!filteredTodos.length}
   />
 }
 
