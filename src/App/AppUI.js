@@ -53,7 +53,7 @@ function AppUI() {
   
       <CreateTodoButton/>
       
-      {!openModal && (
+      {openModal && (
         <Modal>
           <TodoForm/>
         </Modal>
